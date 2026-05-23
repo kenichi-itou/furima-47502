@@ -1,24 +1,54 @@
-# README
+# FURIMA
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## ER図
+![ER図](ER.png)
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| name     | string | null: false |
+| nickname | string | null: false |
+| email    | string | null: false, unique: true |
+| password | string | null: false |
 
-* System dependencies
+### Association
+- has_many :items
+- has_many :orders
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| name        | string     | null: false |
+| price       | integer    | null: false |
+| description | text       | null: false |
+| user_id     | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
+- belongs_to :user
+- has_one :order
 
-* How to run the test suite
+## orders テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user_id | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping_address
 
-* ...
+## shipping_addresses テーブル
+
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| postal_code  | string     | null: false |
+| address      | string     | null: false |
+| phone_number | string     | null: false |
+| order_id     | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :order
