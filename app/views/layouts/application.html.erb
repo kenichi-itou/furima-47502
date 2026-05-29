@@ -8,14 +8,9 @@
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
-  <%= include_gon %>
-  <script src="https://js.pay.jp/v2/pay.js"></script>
 </head>
 
 <body>
-  <% if user_signed_in? %>
-    <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
-  <% end %>
   <%= yield %>
 </body>
 
