@@ -6,9 +6,10 @@
   <div class='items-sell-main'>
     <%= form_with model: @item, url: items_path, local: true do |f| %>
       <%= render 'shared/error_messages', model: f.object %>
-      <div class='img-upload'>
-        <div class='click-upload'>
-          <p class='weight-bold-text'>商品画像 <span class='indispensable'>必須</span></p>
+      <div class='items-detail'>
+        <p class='weight-bold-text'>商品画像 <span class='indispensable'>必須</span></p>
+        <div class='form'>
+          <p>クリックしてファイルをアップロード</p>
           <%= f.file_field :image, class: 'image-default' %>
         </div>
       </div>
@@ -18,15 +19,13 @@
       </div>
       <div class='new-items items-explain'>
         <p class='weight-bold-text'>商品の説明 <span class='indispensable'>必須</span></p>
-        <%= f.text_area :description, class: 'items-text', placeholder: '商品の説明（必須）（色、素材、重さ、変換、注意品など）例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。' %>
+        <%= f.text_area :description, class: 'items-text', placeholder: '商品の説明（必須）（色、素材、重さ、定価、注意点など）例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。' %>
       </div>
       <div class='items-detail'>
         <p class='weight-bold-text'>商品の詳細</p>
         <div class='form'>
           <p class='weight-bold-text'>カテゴリー <span class='indispensable'>必須</span></p>
           <%= f.collection_select :category_id, Category.all, :id, :name, {}, class: 'select-box' %>
-        </div>
-        <div class='form'>
           <p class='weight-bold-text'>商品の状態 <span class='indispensable'>必須</span></p>
           <%= f.collection_select :condition_id, Condition.all, :id, :name, {}, class: 'select-box' %>
         </div>
@@ -36,32 +35,30 @@
         <div class='form'>
           <p class='weight-bold-text'>配送料の負担 <span class='indispensable'>必須</span></p>
           <%= f.collection_select :shipping_fee_id, ShippingFee.all, :id, :name, {}, class: 'select-box' %>
-        </div>
-        <div class='form'>
           <p class='weight-bold-text'>発送元の地域 <span class='indispensable'>必須</span></p>
           <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, class: 'select-box' %>
-        </div>
-        <div class='form'>
           <p class='weight-bold-text'>発送までの日数 <span class='indispensable'>必須</span></p>
           <%= f.collection_select :shipping_day_id, ShippingDay.all, :id, :name, {}, class: 'select-box' %>
         </div>
       </div>
-      <div class='sell-price'>
-        <p class='weight-bold-text'>販売価格（¥300〜¥9,999,999）</p>
-        <div class='price-content'>
-          <p class='weight-bold-text'>価格 <span class='indispensable'>必須</span></p>
-          <div class='price-text'>
-            <span class='sell-yen'>¥</span>
-            <%= f.text_field :price, class: 'price-input', placeholder: '半角数字で入力', id: 'item-price' %>
+      <div class='items-detail'>
+        <p class='weight-bold-text'>販売価格<br>（¥300〜¥9,999,999）</p>
+        <div class='form'>
+          <div class='price-content'>
+            <p class='weight-bold-text'>価格 <span class='indispensable'>必須</span></p>
+            <div class='price-text'>
+              <span class='sell-yen'>¥</span>
+              <%= f.text_field :price, class: 'price-input', placeholder: '半角数字で入力', id: 'item-price' %>
+            </div>
           </div>
-        </div>
-        <div class='price-content'>
-          <p class='weight-bold-text'>販売手数料(10%)</p>
-          <p><span id='add-tax-price'>0</span>円</p>
-        </div>
-        <div class='price-content'>
-          <p class='weight-bold-text'>販売利益</p>
-          <p><span id='profit'>0</span>円</p>
+          <div class='price-content'>
+            <p class='weight-bold-text'>販売手数料(10%)</p>
+            <p><span id='add-tax-price'>0</span>円</p>
+          </div>
+          <div class='price-content'>
+            <p class='weight-bold-text'>販売利益</p>
+            <p><span id='profit'>0</span>円</p>
+          </div>
         </div>
       </div>
       <div class='caution'>
