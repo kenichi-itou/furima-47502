@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
@@ -70,25 +72,25 @@ RSpec.describe Item, type: :model do
       it 'priceが299以下では出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price は¥300~¥9,999,999の間で入力してください")
+        expect(@item.errors.full_messages).to include('Price は¥300~¥9,999,999の間で入力してください')
       end
 
       it 'priceが10000000以上では出品できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price は¥300~¥9,999,999の間で入力してください")
+        expect(@item.errors.full_messages).to include('Price は¥300~¥9,999,999の間で入力してください')
       end
 
       it 'priceが半角数値以外では出品できない' do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price は¥300~¥9,999,999の間で入力してください")
+        expect(@item.errors.full_messages).to include('Price は¥300~¥9,999,999の間で入力してください')
       end
 
       it 'userが紐付いていなければ出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end

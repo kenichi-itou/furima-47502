@@ -1,8 +1,9 @@
-class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+# frozen_string_literal: true
 
-  def index
-  end
+class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create]
+
+  def index; end
 
   def new
     @item = Item.new

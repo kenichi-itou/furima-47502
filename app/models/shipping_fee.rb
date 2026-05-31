@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShippingFee < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
