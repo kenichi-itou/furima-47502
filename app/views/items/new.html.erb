@@ -1,0 +1,83 @@
+<%= render "shared/second-header" %>
+<div class='items-sell-contents'>
+  <div class='items-sell-header'>
+    <h1 class='items-sell-title'>商品の情報を入力</h1>
+  </div>
+  <div class='items-sell-main'>
+
+    <%= form_with model: @item, url: items_path, local: true do |f| %>
+
+      <%= render 'shared/error_messages', model: f.object %>
+
+      <div class='img-upload'>
+        <div class='click-upload'>
+          <p class='weight-bold-text'>商品画像</p>
+          <%= f.file_field :image, class: 'image-default' %>
+        </div>
+      </div>
+
+      <div class='new-items'>
+        <p class='weight-bold-text'>商品名 <span class='indispensable'>必須</span></p>
+        <%= f.text_field :name, class: 'items-text', placeholder: '商品名（必須）' %>
+      </div>
+
+      <div class='new-items items-explain'>
+        <p class='weight-bold-text'>商品の説明 <span class='indispensable'>必須</span></p>
+        <%= f.text_area :description, class: 'items-text', placeholder: '商品の説明（必須）' %>
+      </div>
+
+      <div class='items-detail'>
+        <div class='form'>
+          <p class='weight-bold-text'>カテゴリー <span class='indispensable'>必須</span></p>
+          <%= f.collection_select :category_id, Category.all, :id, :name, {}, class: 'select-box' %>
+        </div>
+        <div class='form'>
+          <p class='weight-bold-text'>商品の状態 <span class='indispensable'>必須</span></p>
+          <%= f.collection_select :condition_id, Condition.all, :id, :name, {}, class: 'select-box' %>
+        </div>
+      </div>
+
+      <div class='items-detail'>
+        <div class='form'>
+          <p class='weight-bold-text'>配送料の負担 <span class='indispensable'>必須</span></p>
+          <%= f.collection_select :shipping_fee_id, ShippingFee.all, :id, :name, {}, class: 'select-box' %>
+        </div>
+        <div class='form'>
+          <p class='weight-bold-text'>発送元の地域 <span class='indispensable'>必須</span></p>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, class: 'select-box' %>
+        </div>
+      </div>
+
+      <div class='items-detail'>
+        <div class='form'>
+          <p class='weight-bold-text'>発送までの日数 <span class='indispensable'>必須</span></p>
+          <%= f.collection_select :shipping_day_id, ShippingDay.all, :id, :name, {}, class: 'select-box' %>
+        </div>
+      </div>
+
+      <div class='sell-price'>
+        <div class='price-content'>
+          <p class='weight-bold-text'>販売価格 <span class='indispensable'>必須</span></p>
+          <div class='price-text'>
+            <span class='sell-yen'>¥</span>
+            <%= f.text_field :price, class: 'price-input', placeholder: '¥300~¥9,999,999', id: 'item-price' %>
+          </div>
+        </div>
+        <div class='price-content'>
+          <p class='weight-bold-text'>販売手数料</p>
+          <p><span id='add-tax-price'>0</span>円</p>
+        </div>
+        <div class='price-content'>
+          <p class='weight-bold-text'>販売利益</p>
+          <p><span id='profit'>0</span>円</p>
+        </div>
+      </div>
+
+      <div class='sell-btn-contents'>
+        <%= f.submit '出品する', class: 'sell-btn' %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+<%= render "shared/second-footer" %>
