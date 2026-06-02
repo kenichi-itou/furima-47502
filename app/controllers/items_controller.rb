@@ -3,7 +3,13 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
 
-  def index; end
+  def index
+    @items = Item.all.order(created_at: :desc)
+  end
+
+  def show
+    @item = Item.find(params[:id])
+  end
 
   def new
     @item = Item.new

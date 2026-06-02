@@ -1,0 +1,58 @@
+<%= render "shared/header" %>
+<div class='item-show-contents'>
+  <div class='item-show-main'>
+    <div class='item-show-img'>
+      <%= image_tag @item.image, class: 'item-show-img-content' %>
+    </div>
+    <div class='item-show-info'>
+      <div class='item-show-info-top'>
+        <h2 class='item-show-name'><%= @item.name %></h2>
+        <p class='item-show-price'><%= @item.price %>円(税込み)</p>
+        <p class='item-show-tax'>配送料の負担：<%= ShippingFee.find(@item.shipping_fee_id).name %></p>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.id == @item.user_id %>
+          <div class='item-show-btns'>
+            <%= link_to '商品の編集', '#', class: 'item-show-edit-btn' %>
+            <%= link_to '削除', '#', class: 'item-show-delete-btn' %>
+          </div>
+        <% else %>
+          <div class='item-show-btns'>
+            <%= link_to '購入画面に進む', '#', class: 'item-show-buy-btn' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class='item-show-detail'>
+    <h3 class='item-show-detail-title'>商品の説明</h3>
+    <p class='item-show-detail-text'><%= @item.description %></p>
+    <div class='item-show-detail-info'>
+      <div class='item-show-detail-info-item'>
+        <p class='item-show-detail-info-title'>カテゴリー</p>
+        <p class='item-show-detail-info-text'><%= Category.find(@item.category_id).name %></p>
+      </div>
+      <div class='item-show-detail-info-item'>
+        <p class='item-show-detail-info-title'>商品の状態</p>
+        <p class='item-show-detail-info-text'><%= Condition.find(@item.condition_id).name %></p>
+      </div>
+      <div class='item-show-detail-info-item'>
+        <p class='item-show-detail-info-title'>配送料の負担</p>
+        <p class='item-show-detail-info-text'><%= ShippingFee.find(@item.shipping_fee_id).name %></p>
+      </div>
+      <div class='item-show-detail-info-item'>
+        <p class='item-show-detail-info-title'>発送元の地域</p>
+        <p class='item-show-detail-info-text'><%= Prefecture.find(@item.prefecture_id).name %></p>
+      </div>
+      <div class='item-show-detail-info-item'>
+        <p class='item-show-detail-info-title'>発送までの日数</p>
+        <p class='item-show-detail-info-text'><%= ShippingDay.find(@item.shipping_day_id).name %></p>
+      </div>
+      <div class='item-show-detail-info-item'>
+        <p class='item-show-detail-info-title'>出品者</p>
+        <p class='item-show-detail-info-text'><%= @item.user.nickname %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer" %>
