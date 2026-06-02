@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
-  get 'items/index'
-  get "up" => "rails/health#show", as: :rails_health_check
-  root "items#index"
+  root 'items#index'
+  resources :items, only: %i[index new create]
+  get 'up' => 'rails/health#show', as: :rails_health_check
 end
