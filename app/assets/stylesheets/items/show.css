@@ -1,5 +1,4 @@
 /* 商品の概要 */
-
 .item-show {
   background-color: #f8f8f8;
   width: 100vw;
@@ -12,7 +11,7 @@
 .item-box {
   background-color: #FFF;
   width: 70vw;
-  min-width: 1200px;
+  min-width: 600px;
   padding: 10vh 15vw;
   display: flex;
   flex-direction: column;
@@ -48,7 +47,6 @@
 .item-price-box>.item-postage {
   font-size: 16px;
 }
-
 
 .item-red-btn {
   text-align: center;
@@ -101,43 +99,47 @@
 
 .option {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
+  width: 100%;
+  gap: 20px;
 }
 
 .favorite-btn {
   border-radius: 40px;
-  width: 15vw;
-  min-width: 200px;
+  width: 200px;
+  height: 50px;
   color: rgb(249, 75, 0);
   border: 2px solid #ffb340;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
+  white-space: nowrap;
 }
 
 .favorite-star-icon {
+  width: 16px;
+  height: 16px;
   margin-right: 5px;
 }
 
 .report-btn {
   border-radius: 40px;
-  width: 15vw;
-  min-width: 200px;
-
-  padding: 1vh 0;
+  width: 200px;
+  height: 50px;
   color: black;
   border: 2px solid #2d2d2d;
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
 }
 
 .report-flag-icon {
+  width: 16px;
+  height: 16px;
   margin-right: 5px;
 }
-
 
 /* /商品の概要 */
 
@@ -187,8 +189,8 @@
 .links {
   display: flex;
   justify-content: space-between;
-  width: 50vw;
-
+  width: 100%;
+  margin-top: 20px;
 }
 
 .change-item-btn {
