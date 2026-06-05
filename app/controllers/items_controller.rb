@@ -9,8 +9,7 @@ class ItemsController < ApplicationController
     @items = Item.order(created_at: :desc)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @item = Item.new
@@ -25,8 +24,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @item.update(item_params)
