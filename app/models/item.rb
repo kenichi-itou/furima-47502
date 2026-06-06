@@ -2,6 +2,7 @@
 
 class Item < ApplicationRecord
   belongs_to :user
+  has_one :order
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -20,6 +21,6 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_day_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :price, presence: true,
-                    numericality: { only_integer: true, greater_than_or_equal_to: 300,
-                                    less_than_or_equal_to: 9_999_999, message: 'は¥300~¥9,999,999の間で入力してください' }
+            numericality: { only_integer: true, greater_than_or_equal_to: 300,
+                            less_than_or_equal_to: 9_999_999, message: 'は¥300~¥9,999,999の間で入力してください' }
 end

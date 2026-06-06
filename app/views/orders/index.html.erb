@@ -1,0 +1,64 @@
+<meta name="payjp-public-key" content="<%= ENV['PAYJP_PUBLIC_KEY'] %>">
+<%= render "shared/second-header" %>
+<div class='item-purchase'>
+  <div class='purchase-main'>
+    <div class='purchase-left'>
+      <div class='purchase-item'>
+        <%= image_tag @item.image, class: 'purchase-item-img' %>
+        <div class='purchase-item-info'>
+          <p class='purchase-item-name'><%= @item.name %></p>
+          <p class='purchase-item-price'>¥<%= @item.price %></p>
+          <p class='purchase-item-postage'><%= @item.shipping_fee.name %></p>
+        </div>
+      </div>
+    </div>
+    <div class='purchase-right'>
+      <%= form_with model: @order_address, url: item_orders_path(@item), local: true, id: 'order-form' do |f| %>
+        <%= render 'shared/error_messages', model: f.object %>
+        <div class='purchase-form'>
+          <div class='form-group'>
+            <label class='purchase-label'>クレジットカード情報</label>
+            <div id='card-element'>
+              <div id='card-number'></div>
+              <div id='card-expiry'></div>
+              <div id='card-cvc'></div>
+            </div>
+            <div id='card-errors' role='alert'></div>
+            <%= f.hidden_field :token, id: 'card-token' %>
+          </div>
+          <div class='form-group'>
+            <label class='purchase-label'>配送先</label>
+            <div class='purchase-input-wrap'>
+              <label>郵便番号</label>
+              <%= f.text_field :postal_code, placeholder: '例）123-4567', class: 'purchase-input' %>
+            </div>
+            <div class='purchase-input-wrap'>
+              <label>都道府県</label>
+              <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, class: 'purchase-input' %>
+            </div>
+            <div class='purchase-input-wrap'>
+              <label>市区町村</label>
+              <%= f.text_field :city, placeholder: '例）大阪市北区', class: 'purchase-input' %>
+            </div>
+            <div class='purchase-input-wrap'>
+              <label>番地</label>
+              <%= f.text_field :addresses, placeholder: '例）青山1-1-1', class: 'purchase-input' %>
+            </div>
+            <div class='purchase-input-wrap'>
+              <label>建物名</label>
+              <%= f.text_field :building, placeholder: '例）東京ビル103号', class: 'purchase-input' %>
+            </div>
+            <div class='purchase-input-wrap'>
+              <label>電話番号</label>
+              <%= f.text_field :phone_number, placeholder: '例）09012345678', class: 'purchase-input' %>
+            </div>
+          </div>
+          <div class='purchase-btn'>
+            <%= f.submit '購入', class: 'purchase-red-btn' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render "shared/second-footer" %>

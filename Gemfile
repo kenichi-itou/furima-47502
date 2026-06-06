@@ -20,6 +20,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'mysql2', '~> 0.5'
   gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
 group :production do
   gem 'pg'
