@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update]
-  before_action :set_item, only: %i[show edit update]
-  before_action :move_to_index, only: %i[edit update]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :set_item, only: %i[show edit update destroy]
+  before_action :move_to_index, only: %i[edit update destroy]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -34,10 +34,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @item.destroy
-  #   redirect_to root_path
-  # end
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
 
   private
 
