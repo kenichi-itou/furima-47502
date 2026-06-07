@@ -16,7 +16,9 @@ gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 group :development, :test do
+  gem 'database_cleaner-active_record'
   gem 'debug', platforms: %i[mri windows]
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'mysql2', '~> 0.5'
   gem 'rspec-rails'
