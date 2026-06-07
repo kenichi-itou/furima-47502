@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 FactoryBot.define do
   factory :order_address do
     postal_code { '123-4567' }
@@ -9,7 +8,5 @@ FactoryBot.define do
     building { '東京ビル103号' }
     phone_number { '09012345678' }
     token { 'tok_abcdefghijk00000000000000000' }
-    user_id { nil }
-    item_id { nil }
   end
 end

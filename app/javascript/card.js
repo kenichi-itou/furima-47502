@@ -1,18 +1,15 @@
-document.addEventListener('turbo:load', () => {
+const card = () => {
   const cardElement = document.getElementById('card-element');
   if (!cardElement) return;
-
   const publicKey = document.querySelector('meta[name="payjp-public-key"]').content;
   const payjp = Payjp(publicKey);
   const elements = payjp.elements();
   const cardNumberElement = elements.create('cardNumber');
   const cardExpiryElement = elements.create('cardExpiry');
   const cardCvcElement = elements.create('cardCvc');
-
   cardNumberElement.mount('#card-number');
   cardExpiryElement.mount('#card-expiry');
   cardCvcElement.mount('#card-cvc');
-
   const form = document.getElementById('order-form');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -26,4 +23,7 @@ document.addEventListener('turbo:load', () => {
       form.submit();
     }
   });
-});
+};
+
+window.addEventListener('turbo:load', card);
+window.addEventListener('turbo:render', card);
